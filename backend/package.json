@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "backend for csc_snist",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "npm run dev",
+    "test": "nodemon server.js",
+    "dev": "nodemon server.js",
     "start": "node server.js"
   },
   "repository": {
@@ -16,5 +18,15 @@
   "bugs": {
     "url": "https://github.com/abdulfarhath/csc_snist/issues"
   },
-  "homepage": "https://github.com/abdulfarhath/csc_snist#readme"
+  "homepage": "https://github.com/abdulfarhath/csc_snist#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "hash.js": "^1.1.7",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "nodemon": "^3.1.9"
+  }
 }
