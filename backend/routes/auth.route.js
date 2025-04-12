@@ -1,13 +1,15 @@
-import express, { Router } from 'express';
+import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
+import authenticateJWT from '../middlewares/auth.middleware.js';  // Import JWT middleware
 
 const router = express.Router();
 
+// Register a new user
 router.post('/register', async (req, res) => {
     try {
-        const { name, username, password, email, branch, rollNo, year, createdAt} = req.body;
+        const { name, username, password, email, branch, rollNo, year, createdAt } = req.body;
 
         const existingEmail = await User.findOne({ email });
         if (existingEmail) return res.status(400).json({ error: "Email already exists" });
@@ -15,19 +17,20 @@ router.post('/register', async (req, res) => {
         const existingUser = await User.findOne({ username });
         if (existingUser) return res.status(400).json({ error: "Username already taken" });
 
-        const existingrollNo = await User.findOne({ rollNo });
-        if (existingrollNo) return res.status(400).json({error : "roll number already exists"});
+        const existingRollNo = await User.findOne({ rollNo });
+        if (existingRollNo) return res.status(400).json({ error: "Roll number already exists" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({ name, username, password: hashedPassword, email, branch, rollNo, year, createdAt });
         await newUser.save();
 
-        res.status(201).json({ message: 'gotta new HTEAM Member' });
+        res.status(201).json({ message: 'New member added to HTEAM' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
+// Login a user
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -44,16 +47,13 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get("/profile", async (req, res) => {
-    const token = req.header("Authorization");
-    if (!token) return res.status(401).json({ error: "Access Denied" });
-
+// Get the profile of the logged-in user
+router.get("/profile", authenticateJWT, async (req, res) => {  // Protect the profile route with JWT authentication
     try {
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findById(verified.id).select("-password");
+        const user = await User.findById(req.user.id).select("-password");
         res.json(user);
     } catch (err) {
-        res.status(400).json({ error: "Invalid Token" });
+        res.status(500).json({ error: "Unable to fetch user profile" });
     }
 });
 
