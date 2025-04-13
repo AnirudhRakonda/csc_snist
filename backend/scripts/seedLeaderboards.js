@@ -23,7 +23,7 @@ const seedMultipleLeaderboards = async () => {
     for (let i = 0; i < 5; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() - i); // go back by i days
-      const dateOnly = date.toISOString().split("T")[0];
+      const dateOnly = date.toISOString().split("T")[0]; // Format date to YYYY-MM-DD
 
       const alreadyExists = await Leaderboard.findOne({ date: dateOnly });
       if (alreadyExists) {
