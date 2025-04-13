@@ -1,4 +1,5 @@
 import React from 'react'
+import img from '../assests/img.png';
 
 const Landing = () => {
     return (
@@ -14,6 +15,7 @@ const Landing = () => {
                 <h3 className='text-xl md:text-2xl text-cta font-spacemono'>
                         Learn.  Explore.  Break.  Build.
                 </h3>
+                <img src={img} alt="Landing" className='w-full md:w-[80%] mt-6 md:mt-12' />
              <div className="cta flex flex-col md:flex-row items-center gap-4 md:gap-8">
              <button className='bg-cta text-background font-jetbrains text-base md:text-lg px-5 md:px-7 py-2 rounded-2xl mt-4 md:mt-8'>
                         Join Us

@@ -27,7 +27,10 @@ const seedUsers = async (count = 10) => {
     const userData = await generateFakeUser();
 
     try {
-      const existingUser = await User.findOne({ $or: [{ email: userData.email }, { username: userData.username }, { rollNo: userData.rollNo }] });
+      const existingUser = await User.findOne({
+        $or: [{ email: userData.email }, { username: userData.username }, { rollNo: userData.rollNo }]
+      });
+
       if (existingUser) {
         console.warn(`⚠️ Skipped (duplicate): ${userData.username}`);
         continue;
