@@ -9,8 +9,12 @@ export const getLeaderboard = async (req, res) => {
             return res.status(400).json({ message: "Date query parameter is required." });
         }
 
-        const leaderboard = await Leaderboard.findOne({ date: new Date(date) })
-            .populate("users.userId", "username name branch year rollNo");
+        // Ensure date is in the correct "YYYY-MM-DD" format
+        const formattedDate = new Date(date).toISOString().split('T')[0];
+
+        const leaderboard = await Leaderboard.findOne({
+            date: { $eq: formattedDate }, // Match the formatted date string
+        }).populate("users.userId", "username name branch year rollNo");
 
         if (!leaderboard) {
             return res.status(404).json({ message: "No leaderboard found for this date." });
@@ -28,7 +32,7 @@ export const getLeaderboard = async (req, res) => {
             }));
 
         res.status(200).json({
-            date,
+            date: formattedDate,
             leaderboard: sortedUsers,
         });
     } catch (err) {
@@ -37,22 +41,30 @@ export const getLeaderboard = async (req, res) => {
 };
 
 
+
 export const createLeaderboard = async (req, res) => {
     try {
+
+        console.log("helo");
         const { date, users } = req.body;
+
+        console.log(date, users);
 
         if (!date || !users || !Array.isArray(users)) {
             return res.status(400).json({ message: "Date and users array are required." });
         }
 
+        // Convert date to "YYYY-MM-DD" format (without time)
+        const formattedDate = new Date(date).toISOString().split('T')[0];
+
         // Prevent duplicate leaderboard for the same date
-        const existing = await Leaderboard.findOne({ date: new Date(date) });
+        const existing = await Leaderboard.findOne({ date: formattedDate });
         if (existing) {
             return res.status(400).json({ message: "Leaderboard already exists for this date." });
         }
 
         const leaderboard = new Leaderboard({
-            date: new Date(date),
+            date: formattedDate, // Store date in "YYYY-MM-DD" format
             users: users.map(user => ({
                 userId: user.userId,
                 score: user.score,
@@ -66,6 +78,7 @@ export const createLeaderboard = async (req, res) => {
         res.status(500).json({ message: "Server error", error: err.message });
     }
 };
+
 
 // {
 //     "date": "2025-04-13",
