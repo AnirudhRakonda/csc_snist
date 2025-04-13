@@ -25,6 +25,7 @@ const Navbar = () => {
           ))}
         </ul>
       </div>
+      <hr />
     </nav>
   );
 };
