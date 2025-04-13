@@ -5,7 +5,8 @@ const Landing = () => {
         <div className='bg-background mt-20 md:mt-40 px-4 md:px-12'>
                 <h1 className='text-2xl md:text-4xl text-text font-jetbrains mb-6 md:mb-12'>
                         Welcome to the <span className='text-cta'>CYBER SECURITY CLUB</span> <br />
-                        the home of all things cybersecurity at SNIST 
+                        the home of all things cybersecurity at 
+                        <span className='text-cta'> SNIST</span>
                 </h1>
                 <p className='text-base md:text-lg text-text font-spacemono mb-6 md:mb-12 w-full md:w-[80%]'>
                         We’re a community of curious minds who love to explore ethical hacking, digital forensics, web security, malware analysis, and everything in between. Whether you're a beginner or a seasoned cyber warrior, there’s a place for you here.
