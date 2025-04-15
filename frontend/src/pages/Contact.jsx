@@ -3,28 +3,40 @@ import React, { useState } from 'react';
 const Contact = () => {
     const [message, setMessage] = useState('');
 
-    const handleSendMail = () => {
+    const handleSendMail = (e) => {
+        e.preventDefault();
         alert(`Message sent: ${message}`);
         setMessage('');
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-2xl p-8 bg-white rounded-lg shadow-lg">
-                <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Contact Us</h2>
-                <textarea
-                    className="w-full h-40 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none mb-4"
-                    placeholder="Write your message here..."
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                />
-                <button
-                    className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300"
-                    onClick={handleSendMail}
-                >
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#000' }}>
+            <form onSubmit={handleSendMail} style={{ width: '700px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#1a1a1a' }}>
+                <h2 style={{ color: '#28a745', textAlign: 'center', marginBottom: '20px' }}>Contact Us</h2>
+                <div style={{ marginBottom: '15px' }}>
+                    <label htmlFor="message" style={{ display: 'block', marginBottom: '5px', color: '#ccc' }}>Message</label>
+                    <textarea
+                        id="message"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        style={{
+                            width: '100%',
+                            height: '150px',
+                            padding: '8px',
+                            boxSizing: 'border-box',
+                            backgroundColor: '#333',
+                            color: '#fff',
+                            border: '1px solid #555',
+                            resize: 'none',
+                        }}
+                        placeholder="Write your message here..."
+                        required
+                    />
+                </div>
+                <button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px' }}>
                     Send Mail
                 </button>
-            </div>
+            </form>
         </div>
     );
 };
