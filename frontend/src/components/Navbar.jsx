@@ -23,6 +23,30 @@ const Navbar = () => {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="/contests"
+              className="hover:text-cta transition-colors duration-300"
+            >
+              Contests
+            </a>
+          </li>
+          <li>
+            <a
+              href="/login"
+              className="bg-cta text-background px-4 py-2 rounded hover:bg-hover transition-colors duration-300"
+            >
+              Login
+            </a>
+          </li>
+          <li>
+            <a
+              href="/signup"
+              className="bg-cta text-background px-4 py-2 rounded hover:bg-hover transition-colors duration-300"
+            >
+              Sign Up
+            </a>
+          </li>
         </ul>
       </div>
       <hr />

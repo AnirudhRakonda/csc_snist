@@ -66,4 +66,24 @@ router.get("/profile", authenticateJWT, async (req, res) => {
     }
 });
 
+router.post('/adminlogin', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        console.log(email, password);
+
+        const adminEmail = "sundar@gmail.com";
+        const adminPassword = "imthegoogleceo";
+
+        if (email !== adminEmail || password !== adminPassword) {
+            return res.status(401).json({ error: "Invalid admin credentials" });
+        }
+
+        const token = jwt.sign({ role: "admin" }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+        res.json({ token, message: "Admin login successful" });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 export default router;

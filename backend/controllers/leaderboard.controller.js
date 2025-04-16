@@ -41,13 +41,11 @@ export const getLeaderboard = async (req, res) => {
 };
 
 
-
 export const createLeaderboard = async (req, res) => {
     try {
 
         console.log("helo");
         const { date, users } = req.body;
-
         console.log(date, users);
 
         if (!date || !users || !Array.isArray(users)) {
