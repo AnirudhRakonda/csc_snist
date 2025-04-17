@@ -7,7 +7,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Optional: Set global styles */
+
 body {
   @apply bg-background text-text font-jetbrains;
 }
