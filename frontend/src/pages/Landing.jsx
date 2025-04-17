@@ -38,11 +38,11 @@ const TypingEffect = ({ text }) => {
 const Landing = () => {
         return (
                 <div className='bg-background mt-10 md:mt-20 px-4 md:px-12 relative'>
-                        <img 
+                        {/* <img 
                                 src={img} 
                                 alt="Landing" 
                                 className='w-full md:w-[70%] absolute top-0 right-0 opacity-50 z-0' 
-                        />
+                        /> */}
                         <div className='relative z-10'>
                                 <h1 className='text-2xl md:text-4xl text-text font-jetbrains mb-6 md:mb-12'>
                                         Welcome to the <span className='text-cta'>
