@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import img2 from '../assests/cyberstrike.png';
+import img3 from '../assests/cybertron.png';
+import img4 from '../assests/workshop.png';
 
 const images = [
     {
-        src: 'https://via.placeholder.com/800x400?text=Image+1',
-        description: 'This is the first image description.',
+        src: img2,
+        description: '9 hour ctf hackathon event.',
     },
     {
-        src: 'https://via.placeholder.com/800x400?text=Image+2',
-        description: 'This is the second image description.',
+        src: img3,
+        description: '5 day workshop on cyber security.',
     },
     {
-        src: 'https://via.placeholder.com/800x400?text=Image+3',
-        description: 'This is the third image description.',
+        src: img4,
+        description: 'Workshop on advanced cybersecurity.',
     },
 ];
 
@@ -36,12 +39,17 @@ const Events = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', margin: '4rem auto 0' }}>
             <div style={{ position: 'relative' }}>
                 <img
                     src={images[currentIndex].src}
                     alt={`Slide ${currentIndex + 1}`}
-                    style={{ width: '100%', borderRadius: '8px' }}
+                    style={{
+                        width: '90%',
+                        height: 'auto',
+                        borderRadius: '15px', // Rounded edges
+                        margin: '0 auto', // Center the image
+                    }}
                 />
                 <button
                     onClick={goToPrevious}
@@ -78,11 +86,20 @@ const Events = () => {
                     &#8250;
                 </button>
             </div>
-            <p style={{ marginTop: '10px', fontSize: '16px', color: '#555' }}>
+            <p
+                style={{
+                    marginTop: '10px',
+                    fontSize: '16px',
+                    color: '#fff',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Light background for text
+                    padding: '10px',
+                    borderRadius: '10px',
+                    display: 'inline-block',
+                }}
+            >
                 {images[currentIndex].description}
             </p>
         </div>
     );
 };
-
 export default Events;

@@ -22,11 +22,9 @@ const Login = () => {
 
             const data = await response.json();
             console.log('Login successful:', data);
-            // Handle successful login (e.g., save token)
-            navigate('/'); // Redirect to home page
+            navigate('/');
         } catch (error) {
             console.error('Error during login:', error);
-            // Handle login error (e.g., show error message)
         }
     };
 
@@ -36,34 +34,59 @@ const Login = () => {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#000' }}>
-            <form onSubmit={handleSubmit} style={{ width: '300px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#1a1a1a' }}>
-                <h2 style={{ color: '#28a745' }}>Login</h2>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="email" style={{ display: 'block', marginBottom: '5px', color: '#ccc' }}>Email</label>
+        <div className="flex justify-center items-center h-screen bg-background">
+            <form
+                onSubmit={handleSubmit}
+                className="w-72 p-5 border border-gray-600 rounded bg-background"
+            >
+                <h2 className="text-cta text-center mb-5">Login</h2>
+                <div className="mb-4">
+                    <label
+                        htmlFor="email"
+                        className="block mb-1 text-text"
+                    >
+                        Email
+                    </label>
                     <input
                         type="email"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box', backgroundColor: '#333', color: '#fff', border: '1px solid #555' }}
+                        className="w-full p-2 box-border bg-gray-800 text-text border border-gray-700 rounded"
                         required
                     />
                 </div>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="password" style={{ display: 'block', marginBottom: '5px', color: '#ccc' }}>Password</label>
+                <div className="mb-4">
+                    <label
+                        htmlFor="password"
+                        className="block mb-1 text-text"
+                    >
+                        Password
+                    </label>
                     <input
                         type="password"
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box', backgroundColor: '#333', color: '#fff', border: '1px solid #555' }}
+                        className="w-full p-2 box-border bg-gray-800 text-text border border-gray-700 rounded"
                         required
                     />
                 </div>
-                <button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px' }}>
+                <button
+                    type="submit"
+                    className="w-full p-2 bg-cta text-background border-none rounded"
+                >
                     Login
                 </button>
+                <div className="mt-4 text-center text-text">
+                    Don't have an account? 
+                    <a
+                        href="/signup"
+                        className="text-cta hover:underline transition duration-200"
+                    >
+                        Sign Up
+                    </a>
+                </div>
             </form>
         </div>
     );
