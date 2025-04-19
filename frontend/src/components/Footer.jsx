@@ -5,7 +5,7 @@ const Footer = () => {
     const socialLinks = [
         { name: "Instagram", url: "https://www.instagram.com/csc_snist/", icon: <FaInstagram /> },
         { name: "Discord", url: "https://discord.gg/c7XPYhv9", icon: <FaDiscord /> },
-        { name: "LinkedIn", url: "https://linkedin.com", icon: <FaLinkedin /> },
+        { name: "LinkedIn", url: "https://www.linkedin.com/in/cyber-security-club-48933a309/", icon: <FaLinkedin /> },
     ];
 
     return (
