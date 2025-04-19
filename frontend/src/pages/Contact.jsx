@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
     const [message, setMessage] = useState('');
 
     const handleSendMail = (e) => {
         e.preventDefault();
-        alert(`Message sent: ${message}`);
-        setMessage('');
+
+        emailjs.send(
+            'your_service_id',       // Replace with your EmailJS service ID
+            'your_template_id',      // Replace with your EmailJS template ID
+            { message },
+            'your_user_id_or_public_key'  // Replace with your EmailJS public key
+        ).then((response) => {
+            alert('Message sent successfully!');
+            setMessage('');
+        }).catch((error) => {
+            alert('Failed to send message:', error);
+        });
     };
 
     return (

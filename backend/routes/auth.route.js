@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/register', async (req, res) => {
     try {
-        const { name, username, password, email, branch, rollNo, year } = req.body;
+        const { name, username, password, email, branch, rollNo, year, tid } = req.body;
 
         const existingEmail = await User.findOne({ email });
         if (existingEmail) return res.status(400).json({ error: "Email already exists" });
@@ -28,7 +28,9 @@ router.post('/register', async (req, res) => {
             email, 
             branch, 
             rollNo, 
-            year 
+            year,
+            tid,
+            isVerified: false,
         });
 
         await newUser.save();
@@ -45,6 +47,8 @@ router.post('/login', async (req, res) => {
 
         const user = await User.findOne({ email }).select("+password");
         if (!user) return res.status(404).json({ error: "No such user" });
+
+        if (!user.isVerified) return res.status(403).json({ error: "User is not verified" });
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ error: "Incorrect password" });

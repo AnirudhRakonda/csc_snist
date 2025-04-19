@@ -55,7 +55,7 @@ const Landing = () => {
                                         We’re a community of curious minds who love to explore ethical hacking, digital forensics, web security, malware analysis, and everything in between. Whether you're a beginner or a seasoned cyber warrior, there’s a place for you here.
                                 </p>
                                 <h3 className='text-xl md:text-2xl text-cta font-spacemono'>
-                                        Learn.  Explore.  Break.  Build.
+                                Learn. Explore. Exploit. Secure.
                                 </h3>
                                 
                                 <div className="cta flex flex-col md:flex-row items-center gap-4 md:gap-8">
