@@ -12,7 +12,7 @@ const Signup = () => {
         branch: '',
         rollNo: '',
         year: '',
-        transactionId: '',
+        transactionImage: null,
     });
 
     const navigate = useNavigate();
@@ -22,16 +22,23 @@ const Signup = () => {
         setFormData({ ...formData, [name]: value });
     };
 
+    const handleFileChange = (e) => {
+        setFormData({ ...formData, transactionImage: e.target.files[0] });
+    };
+
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            console.log('Form data:', formData);
+            const formDataToSend = new FormData();
+            Object.keys(formData).forEach((key) => {
+                formDataToSend.append(key, formData[key]);
+            });
+
+            console.log(formDataToSend);
+
             const response = await fetch('http://localhost:5000/api/auth/register', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formDataToSend,
             });
 
             if (!response.ok) {
@@ -51,7 +58,7 @@ const Signup = () => {
             <form onSubmit={handleSignup} style={{ width: '700px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#1a1a1a' }}>
                 <h2 style={{ marginBottom : '6vh', color: '#28a745', textAlign: 'center' }}>Sign Up</h2>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
-                    {['name', 'username', 'email', 'password', 'rollNo', 'transactionId'].map((field) => (
+                    {['name', 'username', 'email', 'password', 'rollNo'].map((field) => (
                         <div key={field} style={{ flex: '1 1 calc(50% - 15px)', marginBottom: '15px' }}>
                             <label htmlFor={field} style={{ display: 'block', marginBottom: '5px', color: '#ccc' }}>
                                 {field.charAt(0).toUpperCase() + field.slice(1)}
@@ -106,6 +113,17 @@ const Signup = () => {
                             <option value="3">3rd Year</option>
                             <option value="4">4th Year</option>
                         </select>
+                    </div>
+                    <div style={{ flex: '1 1 calc(50% - 15px)', marginBottom: '15px' }}>
+                        <label htmlFor="transactionImage" style={{ display: 'block', marginBottom: '5px', color: '#ccc' }}>Payment Screenshot</label>
+                        <input
+                            type="file"
+                            id="transactionImage"
+                            name="transactionImage"
+                            onChange={handleFileChange}
+                            style={{ width: '100%', padding: '8px', boxSizing: 'border-box', backgroundColor: '#333', color: '#fff', border: '1px solid #555' }}
+                            required
+                        />
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '15px' }}>
                         <img src={payment} alt="Signup Illustration" style={{ maxWidth: '40%', height: 'auto' }} />
