@@ -3,7 +3,7 @@ import React from 'react';
 const AboutUs = () => {
     return (
         <div className="mt-16 px-4 md:px-12 flex justify-center w-full mx-auto bg-background text-text py-16">
-            <div className="p-6 md:p-10 rounded-2xl shadow-lg max-w-4xl bg-[#0A0A0A] border border-[#1DFFAB]/30">
+            <div className="p-6 md:p-10 rounded-2xl shadow-lg max-w-6xl bg-[#0A0A0A] border border-[#1DFFAB]/30">
                 
                 {/* Heading with background */}
                 <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center bg-cta/10 p-4 rounded-xl leading-snug">

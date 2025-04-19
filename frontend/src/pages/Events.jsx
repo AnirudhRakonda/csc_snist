@@ -45,7 +45,7 @@ const Events = () => {
                     src={images[currentIndex].src}
                     alt={`Slide ${currentIndex + 1}`}
                     style={{
-                        width: '90%',
+                        width: '60%',
                         height: 'auto',
                         borderRadius: '15px', // Rounded edges
                         margin: '0 auto', // Center the image

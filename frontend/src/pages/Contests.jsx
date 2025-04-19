@@ -20,55 +20,55 @@ const Contests = () => {
         navigate(leaderboardLink);
     };
 
-    if (!isLoggedIn) {
-        return (
-            <div
-            style={{
-            padding: "20px",
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-            }}
-            >
-            <h1 style={{ marginBottom: "20px", fontSize: "34px", color: "red" }}>Access Denied</h1>
-            <p style={{ marginBottom: "30px" }}>
-            You need to be a Hack Team member to get access to the contest page.
-            </p>
-            <div>
-            <button
-            onClick={() => navigate("/signup")}
-            style={{
-                background: "#007bff",
-                color: "#fff",
-                border: "none",
-                padding: "10px 20px",
-                cursor: "pointer",
-                borderRadius: "5px",
-                marginRight: "10px",
-            }}
-            >
-            Sign Up
-            </button>
-            <button
-            onClick={() => navigate("/login")}
-            style={{
-                background: "#28a745",
-                color: "#fff",
-                border: "none",
-                padding: "10px 20px",
-                cursor: "pointer",
-                borderRadius: "5px",
-            }}
-            >
-            Log In
-            </button>
-            </div>
-            </div>
-        );
-    }
+    // if (!isLoggedIn) {
+    //     return (
+    //         <div
+    //         style={{
+    //         padding: "20px",
+    //         textAlign: "center",
+    //         display: "flex",
+    //         flexDirection: "column",
+    //         justifyContent: "center",
+    //         alignItems: "center",
+    //         height: "100vh",
+    //         }}
+    //         >
+    //         <h1 style={{ marginBottom: "20px", fontSize: "34px", color: "red" }}>Access Denied</h1>
+    //         <p style={{ marginBottom: "30px" }}>
+    //         You need to be a Hack Team member to get access to the contest page.
+    //         </p>
+    //         <div>
+    //         <button
+    //         onClick={() => navigate("/signup")}
+    //         style={{
+    //             background: "#007bff",
+    //             color: "#fff",
+    //             border: "none",
+    //             padding: "10px 20px",
+    //             cursor: "pointer",
+    //             borderRadius: "5px",
+    //             marginRight: "10px",
+    //         }}
+    //         >
+    //         Sign Up
+    //         </button>
+    //         <button
+    //         onClick={() => navigate("/login")}
+    //         style={{
+    //             background: "#28a745",
+    //             color: "#fff",
+    //             border: "none",
+    //             padding: "10px 20px",
+    //             cursor: "pointer",
+    //             borderRadius: "5px",
+    //         }}
+    //         >
+    //         Log In
+    //         </button>
+    //         </div>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div style={{ padding: "20px" }}>
