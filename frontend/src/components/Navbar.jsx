@@ -40,6 +40,14 @@ const Navbar = () => {
               Login
             </a>
           </li>
+          <li>
+            <a
+              href="/signup"
+              className="bg-cta text-background px-4 py-2 rounded hover:bg-hover transition-colors duration-300"
+            >
+              Signup
+            </a>
+          </li>
          
         </ul>
       </div>

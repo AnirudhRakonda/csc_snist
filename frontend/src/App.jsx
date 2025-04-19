@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import AdminLogin from "./pages/AdminLogin";
 import Contests from "./pages/Contests";
 import ContestScoreBoard from "./pages/ContestScoreBoard";
+import Footer from "./components/Footer";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 
@@ -44,6 +45,7 @@ function AppContent() {
               <Contact />
             </section>
           </div>
+          <Footer></Footer>
         </div>
       )}
     </>
