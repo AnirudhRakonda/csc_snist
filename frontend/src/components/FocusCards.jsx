@@ -15,16 +15,30 @@ export const Card = React.memo(({
             "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out",
             hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
         )}>
-        <img src={card.src} alt={card.title} className="object-cover absolute inset-0" />
+        <img src={card.src} alt={card.role} className="object-cover absolute inset-0" />
         <div
-            className={cn(
-                "absolute inset-0 bg-black/50 flex items-end py-8 px-4 transition-opacity duration-300",
-                hovered === index ? "opacity-100" : "opacity-0"
-            )}>
+            className="absolute inset-0 bg-black/30 flex flex-col justify-end py-8 px-4 opacity-100 space-y-2">
             <div
-                className="text-xl md:text-2xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-200">
-                {card.title}
+                className="text-xl font-medium text-white">
+                {card.role}
             </div>
+            <div
+                className="text-base font-semibold text-gray-300">
+                {card.name}
+            </div>
+            {/* <div className="flex space-x-4">
+                {card.socials.map((social, idx) => (
+                    <a
+                        key={idx}
+                        href={social.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white hover:text-gray-300 transition-colors duration-200"
+                    >
+                        <i className={`fab fa-${social.icon} text-xl`}></i>
+                    </a>
+                ))}
+            </div> */}
         </div>
     </div>
 ));
@@ -41,7 +55,7 @@ export default function FocusCards({
             className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto md:px-8 w-full">
             {cards.map((card, index) => (
                 <Card
-                    key={card.title}
+                    key={card.name}
                     card={card}
                     index={index}
                     hovered={hovered}

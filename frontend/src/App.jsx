@@ -12,6 +12,7 @@ import ContestScoreBoard from "./pages/ContestScoreBoard";
 import Footer from "./components/Footer";
 import FocusCards from "./components/FocusCards";
 import img from "./assests/cyberstrike.png";
+import my_pic from "./assests/my_pic.jpeg";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 
@@ -26,48 +27,67 @@ function AppContent() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/contests" element={<Contests />} />
-
       </Routes>
       {!isAuthPage && (
         <div className="bg-background text-text font-jetbrains">
           <Navbar />
-          <FocusCards
-            cards={[
-              {
-                title: "President",
-                src: { img },
-                // link: "/contests"
-              },
-              {
-                title: "Events",
-                src: "/images/events.jpg",
-                // link: "/events"
-              },
-              {
-                title: "About Us",
-                src: "/images/about.jpg",
-                // link: "/about"
-              },
-              {
-                title: "Contact Us",
-                src: "/images/contact.jpg",
-                // link: "/contact"
-              },
-            ]}
-          ></FocusCards>
           <div className="pt-20">
-            {/* <section id="contests"> */}
             <section id="home">
               <Landing />
             </section>
             <section id="about">
               <AboutUs />
-              <ContestScoreBoard></ContestScoreBoard>
+              <ContestScoreBoard />
             </section>
             <section id="events">
               <Events />
             </section>
             <section id="contact">
+              <h1 className="text-2xl mt-[10vh] font-bold text-center my-8">OUR PROUD BOARD</h1>
+              <FocusCards
+                cards={[
+                  {
+                    role: "President",
+                    name: "Shivam Kumar",
+                    src: img,
+                  },
+                  {
+                    role: "Vice President",
+                    name: "Aarav Singh",
+                    src: img,
+                  },
+                  {
+                    role: "Secretary",
+                    name: "Ishita Sharma",
+                    src: img,
+                  },
+                  {
+                    role: "Treasurer",
+                    name: "Rohan Das",
+                    src: img,
+                  },
+                  {
+                    role: "Event Coordinator",
+                    name: "Ananya Gupta",
+                    src: img,
+                  },
+                  {
+                    role: "Technical Head",
+                    name: "Kunal Verma",
+                    src: my_pic,
+                  },
+                  {
+                    role: "Design Head",
+                    name: "Priya Mehta",
+                    src: img,
+                  },
+                  {
+                    role: "Public Relations Officer",
+                    name: "Aditya Rao",
+                    src: img,
+                  },
+                ]}
+              ></FocusCards>
               <Contact />
             </section>
           </div>

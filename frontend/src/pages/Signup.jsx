@@ -49,7 +49,7 @@ const Signup = () => {
 
             const data = await response.json();
             console.log('Signup successful:', data);
-            navigate('/');
+            navigate('/login');
         } catch (error) {
             console.error('Error during signup:', error.message);
         }
