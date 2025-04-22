@@ -11,9 +11,12 @@ const Signup = () => {
         branch: '',
         rollNo: '',
         year: '',
-        transactionImage: null,
     });
+    const [transactionImage, setTransactionImage] = useState(null);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
+    const apiBaseUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -22,36 +25,58 @@ const Signup = () => {
     };
 
     const handleFileChange = (e) => {
-        setFormData((prev) => ({ ...prev, transactionImage: e.target.files[0] }));
+        if (e.target.files[0]) {
+            setTransactionImage(e.target.files[0]);
+        }
     };
 
     const handleSignup = async (e) => {
         e.preventDefault();
+        setError('');
+        setLoading(true);
+        
         try {
+            // Create a new FormData instance
             const formDataToSend = new FormData();
-            for (let key in formData) {
+            
+            // Append all text fields
+            Object.keys(formData).forEach(key => {
                 formDataToSend.append(key, formData[key]);
+            });
+            
+            // Append file separately
+            if (transactionImage) {
+                formDataToSend.append('transactionImage', transactionImage);
             }
 
-            // Debug log all form values
+            // Debug log
+            console.log('Sending form data:');
             for (let [key, value] of formDataToSend.entries()) {
-                console.log(`${key}:`, value);
+                console.log(`${key}:`, value instanceof File ? `File: ${value.name}` : value);
             }
 
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            // Make the API request
+            const response = await fetch(`${apiBaseUrl}/api/auth/register`, {
                 method: 'POST',
                 body: formDataToSend,
+                // Do NOT set Content-Type header - browser handles it
             });
 
+            // Parse the response
+            const data = await response.json();
+            
             if (!response.ok) {
-                throw new Error('Signup failed');
+                throw new Error(data.error || 'Registration failed');
             }
 
-            const data = await response.json();
             console.log('Signup successful:', data);
+            alert('Registration successful! You can now login.');
             navigate('/login');
         } catch (error) {
-            console.error('Error during signup:', error.message);
+            console.error('Error during signup:', error);
+            setError(error.message || 'Something went wrong during registration');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -59,6 +84,13 @@ const Signup = () => {
         <div style={{ marginTop: '8vh', marginBottom: '8vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#000' }}>
             <form onSubmit={handleSignup} style={{ width: '700px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#1a1a1a' }}>
                 <h2 style={{ marginBottom: '6vh', color: '#28a745', textAlign: 'center' }}>Sign Up</h2>
+                
+                {error && (
+                    <div style={{ padding: '10px', marginBottom: '15px', backgroundColor: '#dc3545', color: 'white', borderRadius: '5px', textAlign: 'center' }}>
+                        {error}
+                    </div>
+                )}
+                
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
                     {['name', 'username', 'email', 'password', 'rollNo'].map((field) => (
                         <div key={field} style={{ flex: '1 1 calc(50% - 15px)', marginBottom: '15px' }}>
@@ -128,8 +160,21 @@ const Signup = () => {
                         <img src={payment} alt="Payment Screenshot Example" style={{ maxWidth: '40%', borderRadius: '10px' }} />
                     </div>
                 </div>
-                <button type="submit" style={{ marginTop: '20px', width: '100%', padding: '10px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px' }}>
-                    Sign Up
+                <button 
+                    type="submit" 
+                    disabled={loading}
+                    style={{ 
+                        marginTop: '20px', 
+                        width: '100%', 
+                        padding: '10px', 
+                        backgroundColor: loading ? '#999' : '#28a745', 
+                        color: '#fff', 
+                        border: 'none', 
+                        borderRadius: '5px',
+                        cursor: loading ? 'not-allowed' : 'pointer'
+                    }}
+                >
+                    {loading ? 'Signing Up...' : 'Sign Up'}
                 </button>
             </form>
         </div>
