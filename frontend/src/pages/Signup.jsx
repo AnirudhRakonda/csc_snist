@@ -16,7 +16,8 @@ const Signup = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const apiBaseUrl = import.meta.env.VITE_API_URL;
+    // Fix for API URL to work in both development and production
+    const apiBaseUrl = window.location.origin; // This will get the base URL of your current deployment
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -55,7 +56,7 @@ const Signup = () => {
                 console.log(`${key}:`, value instanceof File ? `File: ${value.name}` : value);
             }
 
-            // Make the API request
+            // Make the API request with the correct URL
             const response = await fetch(`${apiBaseUrl}/api/auth/register`, {
                 method: 'POST',
                 body: formDataToSend,

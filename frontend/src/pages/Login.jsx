@@ -6,7 +6,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const apiBaseUrl = import.meta.env.VITE_API_URL;
+    const apiBaseUrl = window.location.origin; // This will get the base URL of your current deployment
     // console.log(`API Base URL: ${apiBaseUrl}`);
 
     const handleLogin = async () => {
