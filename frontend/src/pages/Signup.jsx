@@ -157,7 +157,10 @@ const Signup = () => {
                         />
                     </div>
 
-                    <div style={{ width: '100%', textAlign: 'center', marginTop: '15px' }}>
+                    <div className='flex flex-col justify-center items-center' style={{ width: '100%', textAlign: 'center', marginTop: '15px' }}>
+                        <p style={{ color: '#ccc', marginBottom: '15px' }}>
+                            Pay <span style={{fontWeight:"900", color: '#28a745' }}>₹130</span> to be a <span style={{fontWeight:"900", color: '#28a745' }}>Hack Team Member</span>.
+                        </p>
                         <img src={payment} alt="Payment Screenshot Example" style={{ maxWidth: '40%', borderRadius: '10px' }} />
                     </div>
                 </div>
