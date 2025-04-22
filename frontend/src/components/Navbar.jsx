@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Navbar = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem("token");
+    // Add your logout logic here (e.g., redirecting, etc.)
+    
+  };
+
   const navItems = [
     { name: "Home", id: "home" },
     { name: "About", id: "about" },
@@ -32,23 +48,35 @@ const Navbar = () => {
               Contests
             </a>
           </li>
-          <li>
-            <a
-              href="/login"
-              className="bg-cta text-background px-4 py-2 rounded hover:bg-hover transition-colors duration-300"
-            >
-              Login
-            </a>
-          </li>
-          <li>
-            <a
-              href="/signup"
-              className="bg-cta text-background px-4 py-2 rounded hover:bg-hover transition-colors duration-300"
-            >
-              Signup
-            </a>
-          </li>
-         
+          {isAuthenticated ? (
+            <li>
+              <button
+                onClick={handleLogout}
+                className="bg-cta text-background px-4 py-2 rounded hover:bg-hover transition-colors duration-300"
+              >
+                Logout
+              </button>
+            </li>
+          ) : (
+            <>
+              <li>
+                <a
+                  href="/login"
+                  className="bg-cta text-background px-4 py-2 rounded hover:bg-hover transition-colors duration-300"
+                >
+                  Login
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/signup"
+                  className="bg-cta text-background px-4 py-2 rounded hover:bg-hover transition-colors duration-300"
+                >
+                  Signup
+                </a>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       <hr />
