@@ -6,9 +6,12 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    const apiBaseUrl = window.location.origin; // This will get the base URL of your current deployment
+    // console.log(`API Base URL: ${apiBaseUrl}`);
+
     const handleLogin = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/auth/login', {
+            const response = await fetch(`${apiBaseUrl}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -22,6 +25,7 @@ const Login = () => {
 
             const data = await response.json();
             console.log('Login successful:', data);
+            localStorage.setItem("token", data.token);
             navigate('/');
         } catch (error) {
             console.error('Error during login:', error);

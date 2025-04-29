@@ -20,6 +20,7 @@ const AdminLogin = () => {
 
             const data = await response.json();
             console.log('Login successful:', data);
+            
             // Handle successful login (e.g., save token, redirect)
         } catch (error) {
             console.error('Error during login:', error);

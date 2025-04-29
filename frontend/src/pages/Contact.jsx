@@ -5,8 +5,7 @@ const Contact = () => {
 
     const handleSendMail = (e) => {
         e.preventDefault();
-        alert(`Message sent: ${message}`);
-        setMessage('');
+
     };
 
     return (

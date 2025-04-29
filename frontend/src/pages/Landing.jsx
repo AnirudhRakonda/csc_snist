@@ -37,13 +37,13 @@ const TypingEffect = ({ text }) => {
 
 const Landing = () => {
         return (
-                <div className='bg-background mt-10 md:mt-20 px-4 md:px-12 relative'>
+                <div className='bg-background mt-10 md:mt-20 px-4 md:px-12 relative md:ml-32'>
                         {/* <img 
                                 src={img} 
                                 alt="Landing" 
                                 className='w-full md:w-[70%] absolute top-0 right-0 opacity-50 z-0' 
                         /> */}
-                        <div className='relative z-10'>
+                        <div className=' relative z-10'>
                                 <h1 className='text-2xl md:text-4xl text-text font-jetbrains mb-6 md:mb-12'>
                                         Welcome to the <span className='text-cta'>
                                                 <TypingEffect text="CYBER SECURITY CLUB" />
@@ -55,7 +55,7 @@ const Landing = () => {
                                         We’re a community of curious minds who love to explore ethical hacking, digital forensics, web security, malware analysis, and everything in between. Whether you're a beginner or a seasoned cyber warrior, there’s a place for you here.
                                 </p>
                                 <h3 className='text-xl md:text-2xl text-cta font-spacemono'>
-                                        Learn.  Explore.  Break.  Build.
+                                Learn. Explore. Exploit. Secure.
                                 </h3>
                                 
                                 <div className="cta flex flex-col md:flex-row items-center gap-4 md:gap-8">
